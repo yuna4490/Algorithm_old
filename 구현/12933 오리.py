@@ -26,8 +26,8 @@ for i in range(len(sound)):
     if sound[i] == 'q' and not visited[i]: # 방문하지 않은 q가 있으면
         find(i)
 
-if cnt == 0 or not all(visited):
-    print(-1)
+if cnt == 0 or not all(visited): # 오리가 0마리이거나 모든 문자를 방문하지 않았을 경우
+    print(-1) # 올바르지 않은 소리
 
 else:
     print(cnt)
