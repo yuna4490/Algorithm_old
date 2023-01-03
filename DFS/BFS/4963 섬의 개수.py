@@ -13,24 +13,23 @@ def bfs(i, j):
         for k in range(8):
             nx = x + dx[k]
             ny = y + dy[k]
-            if 0 <= nx < h and 0 <= ny < w and map[nx][ny] == 1:
+            if 0 <= nx < h and 0 <= ny < w and graph[nx][ny] == 1:
                 queue.append((nx, ny))
-                map[nx][ny] += 1
+                graph[nx][ny] += 1
     
 
 while True:
     w, h = map(int, input().split())
-    print(w, h)
+    
     if w == 0 and h == 0:
         break
 
-    map = [list(map(int, input().split())) for _ in range(h)]
-    print(map)
+    graph = [list(map(int, input().split())) for _ in range(h)]
 
     cnt = 0
     for i in range(h):
         for j in range(w):
-            if map[i][j] == 1:
+            if graph[i][j] == 1:
                 bfs(i, j)
                 cnt += 1
     
