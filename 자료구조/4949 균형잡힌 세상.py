@@ -1,3 +1,4 @@
+# rstrip() 주의
 import sys
 input = sys.stdin.readline
 
