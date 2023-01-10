@@ -1,5 +1,5 @@
+#계수정렬, Python3로 제출해야 메모리초과 안남..
 import sys
-import time
 input = sys.stdin.readline
 
 n = int(input())
