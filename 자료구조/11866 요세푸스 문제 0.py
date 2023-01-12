@@ -9,17 +9,10 @@ cnt = 0
 while queue:
     cnt += 1
     if cnt == k:
-        result.append(queue.popleft())
+        result.append(str(queue.popleft()))
         cnt = 0
     
     else:
         queue.append(queue.popleft())
 
-print("<", end = '')
-for i in range(len(result)):
-    if i == len(result)-1:
-        print(result[i], end = '')
-        print(">")
-        break
-    
-    print(result[i], end = ", ")
+print('<', ', '.join(result), '>', sep = '')
