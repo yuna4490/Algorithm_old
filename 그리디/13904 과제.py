@@ -2,20 +2,20 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-checked = [False] * 1001
-hws = []
-result = 0
+hw = []
+checked = [False] * 1001 #주의.. n까지라고 하면 안됨
 
 for _ in range(n):
     d, w = map(int, input().split())
-    hws.append((d, w))
+    hw.append((d, w))
 
-hws = sorted(hws, key = lambda x : (x[1], x[0]), reverse=True)
+hw = sorted(hw, key = lambda x: (x[1], x[0]), reverse=True)
 
+result = 0
 for i in range(n):
-    d = hws[i][0]
-    w = hws[i][1]
-    for j in range(d-1, -1, -1):
+    d = hw[i][0]
+    w = hw[i][1]
+    for j in range(d-1,-1,-1):
         if not checked[j]:
             checked[j] = True
             result += w
