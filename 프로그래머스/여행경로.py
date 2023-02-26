@@ -1,7 +1,6 @@
 from collections import defaultdict
 
 def solution(tickets):
-    answer = ["ICN"]
     d = defaultdict(list)
     
     for ticket in tickets:
