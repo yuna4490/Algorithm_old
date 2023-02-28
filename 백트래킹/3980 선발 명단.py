@@ -3,29 +3,25 @@ input = sys.stdin.readline
 
 c = int(input()) # 테스트 케이스 개수
 
-def backtracking(cnt):
+def backtracking(cnt, sum):
     global result
-
     if cnt == 11:
-        result = max(result, sum(check))
+        result = max(result, sum)
         return
-    
+
     for i in range(11):
-        if visited[i] or not powers[cnt][i]:
+        # 이미 포지션이 있는 멤버이거나 해당 포지션의 능력치가 0일 때
+        if members[i] or not powers[cnt][i]:
             continue
-        visited[i] = 1
-        check[i] = powers[cnt][i]
-        backtracking(cnt + 1)
-        visited[i] = 0
-        check[i] = 0
+
+        members[i] = 1
+        backtracking(cnt + 1, sum + powers[cnt][i])
+        members[i] = 0
 
 for _ in range(c):
-    
     powers = [list(map(int, input().split())) for _ in range(11)]
-
-    check = [0 for _ in range(11)] # 포지션 체크
-    visited = [0 for _ in range(11)] # 선수 방문 체크
+    members = [0 for _ in range(11)] # 멤버 체크
     result = 0
-    
-    backtracking(0)
+
+    backtracking(0, 0)
     print(result)
