@@ -1,38 +1,30 @@
 import sys
-from itertools import combinations
 input = sys.stdin.readline
 
 n = int(input())
 powers = [list(map(int, input().split())) for _ in range(n)]
-result = 1e9
-s = []
+visited = [0 for _ in range(n)]
+min_diff = 0
 
-def backtracking(k, v):
-    global result
-    if k == n//2:
-        start = 0
-        for comb in combinations(s, 2):
-            start += powers[comb[0]][comb[1]]
-            start += powers[comb[1]][comb[0]]
-        
-        link = 0
-        arr = []
+def backtracking(cnt, idx):
+    global min_diff
+    if cnt == n // 2:
+        start, link = 0, 0
         for i in range(n):
-            if i not in s:
-                arr.append(i)
-        
-        for comb in combinations(arr, 2):
-            link += powers[comb[0]][comb[1]]
-            link += powers[comb[1]][comb[0]]
+            for j in range(n):
+                if visited[i] and visited[j]:
+                    start += powers[i][j] + powers[j][i]
+                
+                elif not visited[i] and not visited[j]:
+                    link += powers[i][j] + powers[j][i]
 
-        result = min(result, abs(start-link))    
+        min_diff = min(min_diff, abs(start - link))
         return
-
-    for i in range(v, n):
-        if i not in s:
-            s.append(i)
-            backtracking(k+1, i+1)
-            s.pop()
+    
+    for i in range(idx, n):
+        if not visited[i]:
+            visited[i] = 1
+            backtracking(cnt+1, i+1)
 
 backtracking(0, 0)
-print(result)
+print(min_diff)
