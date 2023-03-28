@@ -16,9 +16,10 @@ def solution(begin, target, words):
         
         for i in range(len(words)):
             count = 0
-            for j in range(len(words[i])):
-                if words[i][j] != x[j]:
-                    count += 1
+            if not visited[i]:
+                for j in range(len(x)):
+                    if words[i][j] != x[j]:
+                        count += 1
             
             if count == 1:
                 queue.append((words[i], cnt+1))
