@@ -1,27 +1,27 @@
 import sys
 input = sys.stdin.readline
 
-c = int(input()) # 테스트 케이스 개수
+c = int(input())
+result = 0
 
 def backtracking(cnt, sum):
     global result
     if cnt == 11:
         result = max(result, sum)
         return
-
+    
     for i in range(11):
-        # 이미 포지션이 있는 멤버이거나 해당 포지션의 능력치가 0일 때
-        if members[i] or not powers[cnt][i]:
+        if positions[i] or not s[cnt][i]:
             continue
+        
+        positions[i] = 1
+        backtracking(cnt+1, sum + s[cnt][i])
+        positions[i] = 0
 
-        members[i] = 1
-        backtracking(cnt + 1, sum + powers[cnt][i])
-        members[i] = 0
 
 for _ in range(c):
-    powers = [list(map(int, input().split())) for _ in range(11)]
-    members = [0 for _ in range(11)] # 멤버 체크
-    result = 0
+    s = [list(map(int, input().split())) for _ in range(11)]
+    positions = [0] * 11
 
     backtracking(0, 0)
     print(result)
