@@ -1,3 +1,5 @@
+# 행렬 테두리 회전하기
+
 def solution(rows, columns, queries):
     answer = []
     matrix = [[0 for _ in range(columns+1)] for _ in range(rows+1)]
