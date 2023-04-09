@@ -31,7 +31,7 @@ for i in range(N):
     for j in range(N):
         max_value = max(max_value, graph[i][j])
 
-for k in range(0, max_value + 1):
+for k in range(max_value):
     visited = [[0 for _ in range(N)] for _ in range(N)]
     cnt = 0
     for i in range(N):
